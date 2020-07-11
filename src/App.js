@@ -1,16 +1,19 @@
 import React from 'react';
-import './App.css';
-import Header from "./components/Header";
-import SideBar from "./components/SideBar";
-import MainContent from "./components/MainContent";
+import './style/App.css';
+import Header from "./components/header/Header";
+import SideBar from "./components/sidebar/SideBar";
+import MainContent from "./components/main/MainContent";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
     return (
-        <div className="app-wrapper">
-            <Header/>
-            <SideBar/>
-            <MainContent/>
-        </div>
+        <BrowserRouter>
+            <div className="app-wrapper">
+                <Header/>
+                <SideBar/>
+                <MainContent/>
+            </div>
+        </BrowserRouter>
     );
 }
 

@@ -17,17 +17,12 @@
     max-width: 75px;
 }
 
-.nav {
-    grid-area: n;
-    background-color: aquamarine;
-
-}
-
 .content {
     grid-area: c;
 }
+
 .content-background {
-  width: 100%;
-  background-color: blue;
-  height: 100px;
+    width: 100%;
+    background-color: blue;
+    height: 100px;
 }
