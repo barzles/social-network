@@ -11,7 +11,7 @@ import News from "./news/News";
 const MainContent = () => {
     return (
             <main className='content'>
-                <Route exact path='/dialogs' component={Dialogs}/>
+                <Route path='/dialogs' component={Dialogs}/>
                 <Route exact path='/profile' component={Profile}/>
                 <Route exact path='/news' component={News}/>
                 <Route exact path='/music' component={Music}/>

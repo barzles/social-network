@@ -1,15 +1,17 @@
-import React, {Component} from "react";
+import React from "react";
 
-class Post extends Component {
+const Post = props => {
+    return (
+        <div>
+            {
+                props.postsData.map(item => <div>
+                        <div key={item.id}>{item.message}</div>
+                        <div>{item.likesCount}</div>
+                    </div>
+                )
+            }
 
-    render() {
-        return (
-                <div>
-                    <div>1 post</div>
-                    <div>2 post</div>
-                    <div>3 post</div>
-                </div>
-        )
-    }
-}
+        </div>
+    )
+};
 export default Post;
