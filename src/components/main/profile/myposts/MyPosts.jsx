@@ -2,32 +2,23 @@ import React, {Component} from "react";
 import s from '../../../../style/component/Profile/MyPost.module.css'
 // Component
 import Post from "./post/Post";
+import {addPost, updateNewChangeText} from "../../../../redux/state";
 
-const postsData = [
-    {
-        message: 'Hello friend!',
-        id: 1,
-        likesCount: 7
-    },
-    {
-        message: 'How are you ?',
-        id: 2,
-        likesCount: 5
-    },
-    {
-        message: 'How old are you ?',
-        id: 3,
-        likesCount: 12
-    },
-    {
-        message: 'What is your name?',
-        id: 4,
-        likesCount: 13
-    },
-];
 
 class MyPosts extends Component {
+    constructor(props) {
+        super(props);
+        this.addPost = this.addPost.bind(this);
+        this.onChangeText = this.onChangeText.bind(this);
+    }
 
+    onChangeText(e) {
+        updateNewChangeText(e.target.value);
+    }
+
+    addPost() {
+        addPost();
+    }
 
     render() {
         return (
@@ -35,14 +26,17 @@ class MyPosts extends Component {
                 <h2>My posts</h2>
                 <div>
                     <div>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea onChange={this.onChangeText}
+                                  value={this.props.newPostText}
+                                  cols="30"
+                                  rows="10"/>
                     </div>
                     <div>
-                        <button>Add post</button>
+                        <button onClick={this.addPost}>Add post</button>
                     </div>
                 </div>
                 <div className={s.posts}>
-                    <Post postsData={postsData}/>
+                    <Post postsData={this.props.postsData}/>
                 </div>
             </div>
         )

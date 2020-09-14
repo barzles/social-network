@@ -5,13 +5,13 @@ import SideBar from "./components/sidebar/SideBar";
 import MainContent from "./components/main/MainContent";
 import {BrowserRouter} from "react-router-dom";
 
-function App() {
+function App(props) {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <SideBar/>
-                <MainContent/>
+                <MainContent state={props.state}/>
             </div>
         </BrowserRouter>
     );

@@ -4,8 +4,8 @@ const Post = props => {
     return (
         <div>
             {
-                props.postsData.map(item => <div>
-                        <div key={item.id}>{item.message}</div>
+                props.postsData.map((item, index) => <div key={`post_${index}`}>
+                        <div >{item.message}</div>
                         <div>{item.likesCount}</div>
                     </div>
                 )

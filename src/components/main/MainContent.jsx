@@ -8,11 +8,13 @@ import Settings from "./settings/Settings";
 import Music from "./music/Music";
 import News from "./news/News";
 
-const MainContent = () => {
+const MainContent = (props) => {
     return (
             <main className='content'>
-                <Route path='/dialogs' component={Dialogs}/>
-                <Route exact path='/profile' component={Profile}/>
+                <Route path='/dialogs' render={ () => <Dialogs
+                dialogsPage={props.state.dialogsPage}/>}/>
+                <Route exact path='/profile' render={ () => <Profile
+                        profilePage={props.state.profilePage}/>}/>
                 <Route exact path='/news' component={News}/>
                 <Route exact path='/music' component={Music}/>
                 <Route exact path='/settings' component={Settings}/>

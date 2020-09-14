@@ -18,46 +18,14 @@ const MessageItem = props => {
 };
 
 const Dialogs = props => {
-    const dialogsData = [
-        {
-            name: 'Morozov',
-            id: 1
-        },
-        {
-            name: 'Guro',
-            id: 2
-        },
-        {
-            name: 'Stas',
-            id: 3
-        },
-        {
-            name: 'Shulyak',
-            id: 4
-        },
-    ];
-    const messagesData = [
-        {
-            message: 'Lorem ipsum dolor.'
-        },
-        {
-            message: 'Lorem ipsum dolor sit amet.'
-        },
-        {
-            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'
-        },
-        {
-            message: 'Lorem ipsum dolor sit amet, consectetur.'
-        },
-    ];
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItem dialogsData={dialogsData}/>
+                <DialogItem dialogsData={props.dialogsPage.dialogsData}/>
             </div>
 
             <div className={s.messages}>
-                <MessageItem messagesData={messagesData}/>
+                <MessageItem messagesData={props.dialogsPage.messagesData}/>
             </div>
         </div>
     )
