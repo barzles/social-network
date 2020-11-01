@@ -11,7 +11,10 @@ function App(props) {
             <div className="app-wrapper">
                 <Header/>
                 <SideBar/>
-                <MainContent state={props.state}/>
+                <MainContent state={props.state}
+                             addPost={props.addPost}
+                             updateNewChangeText={props.updateNewChangeText}
+                />
             </div>
         </BrowserRouter>
     );
