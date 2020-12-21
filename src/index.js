@@ -3,16 +3,18 @@ import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
 import store from "./redux/state"
+import {BrowserRouter} from "react-router-dom";
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
-        <React.StrictMode>
-            <App state={state}
-                 addPost={store.addPost.bind(store)}
-                 updateNewChangeText={store.updateNewChangeText.bind(store)}/>
-        </React.StrictMode>,
-        document.getElementById('root')
+      <BrowserRouter>
+        <App state={state}
+             dispatch={store.dispatch.bind(store)}
+             />
+      </BrowserRouter>, document.getElementById('root')
     );
 };
+
 rerenderEntireTree(store.getState());
+
 store.subscribe(rerenderEntireTree);

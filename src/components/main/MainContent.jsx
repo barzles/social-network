@@ -1,9 +1,9 @@
 import React from "react";
+import {Route} from "react-router-dom";
 
 // Component
 import Profile from "./profile/Profile";
 import Dialogs from "./dialogs/Dialogs";
-import {Route} from "react-router-dom";
 import Settings from "./settings/Settings";
 import Music from "./music/Music";
 import News from "./news/News";
@@ -15,8 +15,7 @@ const MainContent = (props) => {
                 dialogsPage={props.state.dialogsPage}/>}/>
                 <Route exact path='/profile' render={ () => <Profile
                         profilePage={props.state.profilePage}
-                        addPost={props.addPost}
-                        updateNewChangeText={props.updateNewChangeText}
+                        dispatch={props.dispatch}
                 />}/>
                 <Route exact path='/news' component={News}/>
                 <Route exact path='/music' component={Music}/>
