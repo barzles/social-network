@@ -1,5 +1,7 @@
 import React, {Component} from "react";
+import {addPostActionCreator, addUpdateNewPostTextActionCreator} from "../../../../redux/state";
 import s from '../../../../style/component/Profile/MyPost.module.css'
+
 // Component
 import Post from "./post/Post";
 
@@ -21,10 +23,7 @@ class MyPosts extends Component {
         <div>
           <div>
                         <textarea
-                          onChange={(e) => dispatch({
-                            type: 'UPDATE-NEW-POST-TEXT',
-                            newText: e.target.value
-                          })}
+                          onChange={(e) => dispatch(addUpdateNewPostTextActionCreator(e))}
                           value={newPostText}
                           cols="30"
                           rows="10"/>
@@ -32,9 +31,7 @@ class MyPosts extends Component {
           <div>
             <button
               onClick={() => {
-                dispatch({
-                  type: 'ADD-POST'
-                })
+                dispatch(addPostActionCreator())
               }}>
               Add post
             </button>
