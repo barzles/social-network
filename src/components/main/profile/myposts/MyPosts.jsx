@@ -1,13 +1,11 @@
 import React, {Component} from "react";
-import {addPostActionCreator, addUpdateNewPostTextActionCreator} from "../../../../redux/state";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/state";
 import s from '../../../../style/component/Profile/MyPost.module.css'
 
 // Component
 import Post from "./post/Post";
 
-const initialState = {
-
-}
+const initialState = {}
 
 class MyPosts extends Component {
   constructor(props) {
@@ -23,7 +21,10 @@ class MyPosts extends Component {
         <div>
           <div>
                         <textarea
-                          onChange={(e) => dispatch(addUpdateNewPostTextActionCreator(e))}
+                          onChange={(e) => {
+                            let text = e.target.value;
+                            dispatch(updateNewPostTextActionCreator(text))
+                          }}
                           value={newPostText}
                           cols="30"
                           rows="10"/>
