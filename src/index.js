@@ -2,7 +2,7 @@ import './style/index.css';
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./App";
-import store from "./redux/state"
+import store from "./redux/store"
 import {BrowserRouter} from "react-router-dom";
 
 let rerenderEntireTree = (state) => {
@@ -12,7 +12,7 @@ let rerenderEntireTree = (state) => {
              dispatch={store.dispatch.bind(store)}
              />
       </BrowserRouter>, document.getElementById('root')
-    ); 
+    );
 };
 
 rerenderEntireTree(store.getState());
