@@ -1,7 +1,6 @@
 import React from "react";
 import s from '../../../style/pages/Dialogs.module.css'
 import {NavLink} from "react-router-dom";
-import {sendMessageCreator, updateNewMessageBodyCreator} from "../../../redux/reducer/dialogs";
 
 const DialogItem = ({dialogsData}) => {
 
@@ -18,7 +17,17 @@ const MessageItem = ({messagesData}) => {
     )
 };
 
-const Dialogs = ({dispatch, dialogsPage}) => {
+const Dialogs = ({dialogsPage, updateNewMessageBodyCreator, sendMessageCreator}) => {
+
+  let onUpdateNewMessageBodyCreator = (e) => {
+    let body = e.target.value;
+    updateNewMessageBodyCreator(body)
+  }
+
+  let onSendMessageCreator = () => {
+    sendMessageCreator()
+  }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -31,15 +40,12 @@ const Dialogs = ({dispatch, dialogsPage}) => {
                 <div>
                   <textarea value={dialogsPage.newMessageBody}
                             onChange={(e) => {
-                              let body = e.target.value;
-                              dispatch(updateNewMessageBodyCreator(body))
+                              onUpdateNewMessageBodyCreator(e)
                             }}
                             placeholder="Enter your message"/>
                 </div>
                 <div>
-                  <button onClick={() => {
-                    dispatch(sendMessageCreator())
-                  }}>
+                  <button onClick={onSendMessageCreator}>
                     Send
                   </button>
                 </div>

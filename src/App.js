@@ -11,6 +11,7 @@ function App(props) {
                 <SideBar/>
                 <MainContent state={props.state}
                              dispatch={props.dispatch}
+                             store={props.store}
 
                 />
             </div>

@@ -1,20 +1,11 @@
-import React, {Component} from "react";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../../redux/reducer/profile";
+import React from "react";
 import s from '../../../../style/component/Profile/MyPost.module.css'
 
 // Component
 import Post from "./post/Post";
 
-const initialState = {}
+const MyPosts = ({updateNewPostText, addPost, newPostText, postsData}) => {
 
-class MyPosts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
-
-  render() {
-    const {dispatch, postsData, newPostText} = this.props;
     return (
       <div className={s.postBlock}>
         <h2>My posts</h2>
@@ -23,7 +14,7 @@ class MyPosts extends Component {
                         <textarea
                           onChange={(e) => {
                             let text = e.target.value;
-                            dispatch(updateNewPostTextActionCreator(text))
+                            updateNewPostText(text)
                           }}
                           value={newPostText}
                           cols="30"
@@ -31,9 +22,7 @@ class MyPosts extends Component {
           </div>
           <div>
             <button
-              onClick={() => {
-                dispatch(addPostActionCreator())
-              }}>
+              onClick={addPost}>
               Add post
             </button>
           </div>
@@ -43,7 +32,6 @@ class MyPosts extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default MyPosts;
