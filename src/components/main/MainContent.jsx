@@ -11,8 +11,8 @@ import DialogsContainer from "./dialogs/DialogsContainer";
 const MainContent = () => {
   return (
     <main className='content'>
-      <Route path='/dialogs' render={DialogsContainer}/>
-      <Route exact path='/profile' render={Profile}/>
+      <Route path='/dialogs' render={() => <DialogsContainer/>}/>
+      <Route exact path='/profile' component={Profile}/>
       <Route exact path='/news' component={News}/>
       <Route exact path='/music' component={Music}/>
       <Route exact path='/settings' component={Settings}/>
