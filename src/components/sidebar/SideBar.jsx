@@ -9,6 +9,9 @@ const SideBar = () => {
                     <NavLink activeClassName={s.active} to="/profile">Profile</NavLink>
                 </li>
                 <li className={s.item}>
+                    <NavLink activeClassName={s.active} to="/users">Users</NavLink>
+                </li>
+                <li className={s.item}>
                     <NavLink activeClassName={s.active} to="/dialogs">Messages</NavLink>
                 </li>
                 <li className={s.item}>
