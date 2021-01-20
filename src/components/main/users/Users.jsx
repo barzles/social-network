@@ -6,22 +6,56 @@ import noAvatarImg from "../../../assets/images/no-avatar.png";
 class Users extends Component {
 
   componentDidMount() {
-    if (!this.props.users.length) {
+    this.getUsers()
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.currentPage !== this.props.currentPage) {
       this.getUsers()
     }
   }
 
   getUsers() {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + this.props.currentPage + '&count=' + this.props.pageSize)
       .then(response => {
-        this.props.setUsers(response.data.items)
+        this.props.setUsers(response.data.items);
+        this.props.setTotalUsersCount(response.data.totalCount);
       })
   }
 
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+  }
+
   render() {
-    let {users, follow, unFollow} = this.props;
+    let {users, follow, unFollow, pageSize, totalUsersCount, currentPage} = this.props;
+    let pagesCount = Math.ceil(totalUsersCount / pageSize);
+
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i)
+    }
     return (
       <div>
+        {
+          this.props.users.length ?
+            <div className={styles.pagination}>
+              {
+                pages.map(p => (
+                  <button
+                    key={`pages_btn+${p}`}
+                    className={currentPage === p ? styles.active : ''}
+                    onClick={() => {
+                      this.onPageChanged(p)
+                    }}>
+                    {p}
+                  </button>
+                ))
+              }
+            </div>
+            : ''
+        }
+
         {
           users.map(user => (
             <div key={user.id}>
