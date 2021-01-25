@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./users.module.css";
 import noAvatarImg from "../../../assets/images/no-avatar.png";
+import {NavLink} from "react-router-dom";
 
 const Users = ({follow, unFollow, users, currentPage, pageSize, totalUsersCount, onPageChanged, isFetching}) => {
 
@@ -14,31 +15,15 @@ const Users = ({follow, unFollow, users, currentPage, pageSize, totalUsersCount,
   return (
     <div>
       {
-        users.length ?
-          <div className={styles.pagination}>
-            {
-              pages.map(p => (
-                <button
-                  key={`pages_btn+${p}`}
-                  className={currentPage === p ? styles.active : ''}
-                  onClick={() => {
-                    onPageChanged(p)
-                  }}>
-                  {p}
-                </button>
-              ))
-            }
-          </div>
-          : ''
-      }
-
-      {
         users.map(user => (
           <div key={user.id}>
           <span>
             <div>
-              <img className={styles.avatarImg} src={user.photos.small !== null ? user.photos.small : noAvatarImg}
-                   alt={`user-avatar_${user.id}`}/>
+              <NavLink to={`/profile/${user.id}`}>
+                              <img className={styles.avatarImg}
+                                   src={user.photos.small !== null ? user.photos.small : noAvatarImg}
+                                   alt={`user-avatar_${user.id}`}/>
+              </NavLink>
             </div>
             <div>
               {
@@ -65,6 +50,24 @@ const Users = ({follow, unFollow, users, currentPage, pageSize, totalUsersCount,
           </span>
           </div>
         ))
+      }
+      {
+        users.length ?
+          <div className={styles.pagination}>
+            {
+              pages.map(p => (
+                <button
+                  key={`pages_btn+${p}`}
+                  className={currentPage === p ? styles.active : ''}
+                  onClick={() => {
+                    onPageChanged(p)
+                  }}>
+                  {p}
+                </button>
+              ))
+            }
+          </div>
+          : ''
       }
     </div>
   )

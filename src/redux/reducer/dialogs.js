@@ -1,5 +1,6 @@
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 let initialState = {
   dialogsData: [
@@ -34,7 +35,8 @@ let initialState = {
       message: 'Lorem ipsum dolor sit amet, consectetur.'
     },
   ],
-  newMessageBody: ''
+  newMessageBody: '',
+  profile: {}
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -52,7 +54,12 @@ const dialogsReducer = (state = initialState, action) => {
         ...state,
         newMessageBody: '',
         messagesData: [...state.messagesData, {id: 6, message: body}]
-      };
+      }
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
+      }
 
     default:
       return state;
@@ -67,5 +74,5 @@ export const updateNewMessageBodyCreator = (body) => {
 };
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE});
-
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export default dialogsReducer;
