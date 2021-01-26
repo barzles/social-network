@@ -13,7 +13,7 @@ const MainContent = () => {
   return (
     <main className='content'>
       <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-      <Route path='/profile' component={ProfileContainer}/>
+      <Route path='/profile/:userId?' component={ProfileContainer}/>
       <Route exact path='/users' component={UsersContainer}/>
       <Route exact path='/news' component={News}/>
       <Route exact path='/music' component={Music}/>
