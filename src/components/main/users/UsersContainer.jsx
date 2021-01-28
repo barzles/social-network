@@ -28,7 +28,11 @@ class UsersContainer extends Component {
 
   getUsers() {
     this.props.toggleIsFetching(true)
-    axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + this.props.currentPage + '&count=' + this.props.pageSize)
+    axios.get('https://social-network.samuraijs.com/api/1.0/users?page=' + this.props.currentPage + '&count=' + this.props.pageSize, {
+      withCredentials: true,
+      headers: {
+        'API-KEY': '7807dd96-1e96-43d7-b9a1-2b9a0199eabb'
+      }})
       .then(response => {
         this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);

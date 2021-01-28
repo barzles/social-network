@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./users.module.css";
 import noAvatarImg from "../../../assets/images/no-avatar.png";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 const Users = ({follow, unFollow, users, currentPage, pageSize, totalUsersCount, onPageChanged, isFetching}) => {
 
@@ -28,9 +29,36 @@ const Users = ({follow, unFollow, users, currentPage, pageSize, totalUsersCount,
             <div>
               {
                 user.followed ?
-                  <button onClick={() => unFollow(user.id)}>Unfollow</button>
-                  : <button onClick={() => follow(user.id)}>Follow</button>
-
+                  <button onClick={() => {
+                    axios.delete('https://social-network.samuraijs.com/api/1.0/follow/' + user.id, {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': '7807dd96-1e96-43d7-b9a1-2b9a0199eabb'
+                      }
+                    })
+                      .then(response => {
+                        if(!response.data.resultCode) {
+                          unFollow(user.id)
+                        }
+                      })
+                  }
+                  }>Unfollow</button>
+                  : <button onClick={() => {
+                    axios.post('https://social-network.samuraijs.com/api/1.0/follow/' + user.id, {},  {
+                      withCredentials: true,
+                      headers: {
+                        'API-KEY': '7807dd96-1e96-43d7-b9a1-2b9a0199eabb'
+                      }
+                    })
+                      .then(response => {
+                        if(!response.data.resultCode) {
+                          follow(user.id)
+                        }
+                      })
+                  }
+                  }>
+                    Follow
+                  </button>
               }
             </div>
           </span>
