@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./users.module.css";
 import noAvatarImg from "../../../assets/images/no-avatar.png";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../../api/api";
 
 const Users = ({
                  follow,
@@ -12,8 +11,6 @@ const Users = ({
                  pageSize,
                  totalUsersCount,
                  onPageChanged,
-                 isFetching,
-                 toggleFollowingProgress,
                  isFollowingProgress
                }) => {
 
@@ -42,28 +39,12 @@ const Users = ({
                 user.followed ?
                   <button key={`button-${user.id}`}
                           disabled={isFollowingProgress.some(id => id === user.id)}
-                          onClick={() => {
-                            toggleFollowingProgress(true, user.id)
-                            usersAPI.unFollowUsers(user.id).then(data => {
-                              if (!data.resultCode) {
-                                unFollow(user.id)
-                              }
-                              toggleFollowingProgress(false, user.id)
-                            })
-                          }
-                          }>Unfollow</button>
+                          onClick={() => {unFollow(user.id)}}>
+                    Unfollow
+                  </button>
                   : <button key={`button-${user.id}`}
                             disabled={isFollowingProgress.some(id => id === user.id)}
-                            onClick={() => {
-                              toggleFollowingProgress(true, user.id)
-                              usersAPI.followUsers(user.id).then(data => {
-                                if (!data.resultCode) {
-                                  follow(user.id)
-                                }
-                                toggleFollowingProgress(false, user.id)
-                              })
-                            }
-                            }>
+                            onClick={() => {follow(user.id)}}>
                     Follow
                   </button>
               }

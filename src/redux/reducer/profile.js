@@ -64,4 +64,5 @@ export const updateNewPostTextActionCreator = (text) => {
   }
 };
 
+
 export default profileReducer;

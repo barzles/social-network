@@ -1,3 +1,5 @@
+import {profileAPI} from "../../api/api";
+
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -75,4 +77,14 @@ export const updateNewMessageBodyCreator = (body) => {
 
 export const sendMessageCreator = () => ({type: SEND_MESSAGE});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
+
+
+// THUNK
+export const getUserProfile = (userId) => {
+  return (dispatch) => {
+    profileAPI.getProfile(userId).then(data => {
+      dispatch(setUserProfile(data))
+    })
+  }
+}
 export default dialogsReducer;

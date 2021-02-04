@@ -8,6 +8,7 @@ import UsersContainer from "./users/UsersContainer";
 import Settings from "./settings/Settings";
 import Music from "./music/Music";
 import News from "./news/News";
+import Login from "../login/Login";
 
 const MainContent = () => {
   return (
@@ -18,6 +19,7 @@ const MainContent = () => {
       <Route exact path='/news' component={News}/>
       <Route exact path='/music' component={Music}/>
       <Route exact path='/settings' component={Settings}/>
+      <Route exact path='/login' component={Login}/>
     </main>
   )
 };

@@ -1,3 +1,18 @@
 .descriptionBlock {
     padding: 10px;
 }
+.imgProfileBlock {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid blue;
+    margin-bottom: 20px;
+}
+.imgProfileBlock img {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 50%;
+
+}
