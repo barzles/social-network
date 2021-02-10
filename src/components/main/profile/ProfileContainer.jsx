@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getUserProfile} from "../../../redux/reducer/dialogs";
 import {withRouter} from "react-router";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class ProfileContainer extends Component {
 
@@ -24,4 +25,10 @@ class ProfileContainer extends Component {
 let mapStateToProps = (state) => ({
   profile: state.dialogsPage.profile,
 })
-export default withAuthRedirect(withRouter(connect(mapStateToProps, {getUserProfile})(ProfileContainer)));
+
+
+export default compose(
+  connect(mapStateToProps, {getUserProfile}),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

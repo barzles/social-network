@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 // Components
 import Dialogs from "./Dialogs";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 class DialogsContainer extends Component {
   render() {
@@ -30,4 +31,7 @@ let mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(DialogsContainer));
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)
+  (DialogsContainer);
