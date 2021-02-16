@@ -5,6 +5,7 @@ import {getUserProfile} from "../../../redux/reducer/dialogs";
 import {withRouter} from "react-router";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {getStatus, updateStatus} from "../../../redux/reducer/profile";
 
 class ProfileContainer extends Component {
 
@@ -14,21 +15,23 @@ class ProfileContainer extends Component {
       userId = 2
     }
     this.props.getUserProfile(userId)
+    this.props.getStatus(userId);
   }
 
   render() {
 
-    return <Profile {...this.props} />
+    return <Profile {...this.props}/>
   }
 }
 
 let mapStateToProps = (state) => ({
   profile: state.dialogsPage.profile,
+  status: state.profilePage.status
 })
 
 
 export default compose(
-  connect(mapStateToProps, {getUserProfile}),
+  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
   withRouter,
   withAuthRedirect
 )(ProfileContainer);

@@ -42,6 +42,8 @@ class ProfileStatus extends React.Component {
   render() {
     return (
       <>
+        <div>sadas {this.props.status}</div>
+
         {
           this.state.editMode ?
             <div>
