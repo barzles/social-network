@@ -4,7 +4,7 @@ import Preloader from "../../../common/preloader/Preloader";
 import noAvatarImg from "../../../../assets/images/no-avatar.png";
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, updateStatus, status}) => {
   if (!Object.keys(profile).length) {
     return <Preloader/>
   }
@@ -15,7 +15,7 @@ const ProfileInfo = ({profile}) => {
         <img src={profile.photos.large !== null ? profile.photos.large : noAvatarImg}
              alt={`user-avatar_${profile.userId}`}/>
       </div>
-      <ProfileStatus profile={profile}/>
+      <ProfileStatus profile={profile} updateStatus={updateStatus} status={status}/>
     </>
 
   )
