@@ -1,6 +1,5 @@
 import {profileAPI} from "../../api/api";
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
@@ -37,24 +36,16 @@ let initialState = {
       message: 'Lorem ipsum dolor sit amet, consectetur.'
     },
   ],
-  newMessageBody: '',
   profile: {}
 };
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY:
-      return {
-        ...state,
-        newMessageBody: action.messageBody
-      };
-
     case SEND_MESSAGE:
-      let body = state.newMessageBody;
+      let body = action.newMessageBody;
 
       return {
         ...state,
-        newMessageBody: '',
         messagesData: [...state.messagesData, {id: 6, message: body}]
       }
     case SET_USER_PROFILE:
@@ -68,14 +59,7 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const updateNewMessageBodyCreator = (body) => {
-  return {
-    type: UPDATE_NEW_MESSAGE_BODY,
-    messageBody: body
-  }
-};
-
-export const sendMessageCreator = () => ({type: SEND_MESSAGE});
+export const sendMessageCreator = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 

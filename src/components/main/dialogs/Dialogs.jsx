@@ -1,6 +1,7 @@
 import React from "react";
 import s from '../../../style/pages/Dialogs.module.css'
 import {NavLink} from "react-router-dom";
+import { Form, Field } from 'react-final-form'
 
 const DialogItem = ({dialogsData}) => {
 
@@ -17,14 +18,10 @@ const MessageItem = ({messagesData}) => {
   )
 };
 
-const Dialogs = ({dialogsPage, updateNewMessageBody, sendMessage}) => {
-  let onUpdateNewMessageBodyCreator = (e) => {
-    let body = e.target.value;
-    updateNewMessageBody(body)
-  }
+const Dialogs = ({dialogsPage, sendMessage}) => {
 
-  let onSendMessageCreator = () => {
-    sendMessage()
+  let onSendMessage = (values) => {
+    sendMessage(values.newMessageBody)
   }
   return (
     <div className={s.dialogs}>
@@ -36,17 +33,22 @@ const Dialogs = ({dialogsPage, updateNewMessageBody, sendMessage}) => {
         <div><MessageItem messagesData={dialogsPage.messagesData}/></div>
         <div>
           <div>
-                  <textarea value={dialogsPage.newMessageBody}
-                            onChange={(e) => {
-                              onUpdateNewMessageBodyCreator(e)
-                            }}
-                            placeholder="Enter your message"/>
+            <Form onSubmit={onSendMessage} render={(props) => {
+              return (
+                <form>
+                  <div>
+                    <Field component="textarea" name="newMessageBody" placeholder="Enter your message"/>
+                  </div>
+                  <div>
+                    <button onClick={props.handleSubmit}>
+                      Send
+                    </button>
+                  </div>
+                </form>
+              )
+            }}/>
           </div>
-          <div>
-            <button onClick={onSendMessageCreator}>
-              Send
-            </button>
-          </div>
+
         </div>
       </div>
     </div>
