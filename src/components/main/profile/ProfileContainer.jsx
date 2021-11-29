@@ -14,7 +14,7 @@ class ProfileContainer extends Component {
     if (!userId) {
       userId = 14455
     }
-    this.props.getUserProfile(userId)
+    this.props.getUserProfile(userId);
     this.props.getStatus(userId);
   }
 
@@ -26,7 +26,7 @@ class ProfileContainer extends Component {
 let mapStateToProps = (state) => ({
   profile: state.dialogsPage.profile,
   status: state.profilePage.status
-})
+});
 
 
 export default compose(

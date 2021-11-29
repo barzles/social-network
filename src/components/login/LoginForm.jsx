@@ -1,45 +1,45 @@
 import React from "react";
-import { Form, Field } from 'react-final-form'
+import {Form, Field} from 'react-final-form'
+import {required} from "../../helpers/validators";
+import {Input} from "../common/forms/FormControls";
+import {login} from "../../redux/reducer/auth";
+import {connect} from "react-redux";
 
-const LoginForm = () => {
-  let onSubmit = (e) => {
-    console.log(e)
-  }
+const LoginForm = ({login}) => {
+    let onSubmit = (data) => {
+        login({...data})
+    };
 
-  let validate = () => {
-
-  }
-  return (
-    <Form
-      onSubmit={onSubmit}
-      validate={validate}
-      render={props => {
-        return (
-          <form action="">
-            <div>
-              <Field name="login" component="input" type="text" placeholder="Login" />
-            </div>
-            <div>
-              <Field name="password" component="input" type="password" placeholder="password" />
-            </div>
-            <div>
-              <Field
-                name="remember"
-                component="input"
-                type="checkbox"
-              />
-              remember me
-            </div>
-            <div>
-              <button type="button"
-                      onClick={props.handleSubmit}
-                      disabled={props.pristine}>
-                Login
-              </button>
-            </div>
-          </form>
-        )
-      }}/>
-  )
+    return (
+        <Form
+            onSubmit={onSubmit}
+            render={props => {
+                return (
+                    <form action="">
+                        <div>
+                            <Field name="email" validate={required} component={Input} type="text" placeholder="Login"/>
+                        </div>
+                        <div>
+                            <Field name="password" validate={required} component={Input} type="password" placeholder="password"/>
+                        </div>
+                        <div>
+                            <Field
+                                name="rememberMe"
+                                component="input"
+                                type="checkbox"
+                            />
+                            remember me
+                        </div>
+                        <div>
+                            <button type="button"
+                                    onClick={props.handleSubmit}
+                                    disabled={props.pristine}>
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                )
+            }}/>
+    )
 }
-export default LoginForm;
+export default connect(null, {login})(LoginForm);

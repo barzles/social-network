@@ -14,7 +14,7 @@ const Header = (props) => {
               to={'/login'}>
               Login
             </NavLink>
-            : <div>{props.login}</div>
+            : <button type="button" onClick={() => props.logout()}>Logout</button>
         }
       </div>
     </header>
