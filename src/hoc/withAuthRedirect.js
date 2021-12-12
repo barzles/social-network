@@ -11,10 +11,6 @@ let mapStateTopPropsForRedirect = (state) => {
 
 export const withAuthRedirect = (Component) => {
   class RedirectComponent extends React.Component {
-    constructor(props) {
-      super(props);
-      console.log('props', props)
-    }
     render() {
       if (!this.props.isAuth) {
         return <Redirect to={"/login"}/>

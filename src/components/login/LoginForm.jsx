@@ -15,7 +15,7 @@ const LoginForm = ({login}) => {
             onSubmit={onSubmit}
             render={props => {
                 return (
-                    <form action="">
+                    <form action="" onSubmit={props.handleSubmit}>
                         <div>
                             <Field name="email" validate={required} component={Input} type="text" placeholder="Login"/>
                         </div>
@@ -31,8 +31,7 @@ const LoginForm = ({login}) => {
                             remember me
                         </div>
                         <div>
-                            <button type="button"
-                                    onClick={props.handleSubmit}
+                            <button type="submit"
                                     disabled={props.pristine}>
                                 Login
                             </button>
