@@ -1,7 +1,7 @@
 import React from "react";
-import {Form, Field} from 'react-final-form'
+import {Form} from 'react-final-form'
 import {required} from "../../helpers/validators";
-import {Input} from "../common/forms/FormControls";
+import {creatField, Input} from "../common/forms/FormControls";
 import {login} from "../../redux/reducer/auth";
 import {connect} from "react-redux";
 
@@ -16,20 +16,9 @@ const LoginForm = ({login}) => {
             render={props => {
                 return (
                     <form action="" onSubmit={props.handleSubmit}>
-                        <div>
-                            <Field name="email" validate={required} component={Input} type="text" placeholder="Login"/>
-                        </div>
-                        <div>
-                            <Field name="password" validate={required} component={Input} type="password" placeholder="password"/>
-                        </div>
-                        <div>
-                            <Field
-                                name="rememberMe"
-                                component="input"
-                                type="checkbox"
-                            />
-                            remember me
-                        </div>
+                        {creatField('email', required, Input, 'Login', {type: 'text'})}
+                        {creatField('password', required, Input, 'password', {type: 'password'})}
+                        {creatField('rememberMe', null, Input, 'null', {type: 'checkbox'}, 'remember me')}
                         <div>
                             <button type="submit"
                                     disabled={props.pristine}>

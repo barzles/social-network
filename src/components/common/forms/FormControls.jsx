@@ -1,12 +1,13 @@
 import React from 'react';
+import {Field} from "react-final-form";
 
-const FormControl = ({input, meta, Element, ...props}) => {
-    let hasError = meta.error && meta.touched;
+const FormControl = ({input, meta: {error, touched}, Element, ...props}) => {
+    let hasError = error && touched;
     return <div>
         <div>
             <Element {...input} {...props}/>
         </div>
-        {hasError && <span>{meta.error}</span>}
+        {hasError && <span>{error}</span>}
     </div>
 }
 
@@ -17,3 +18,15 @@ export const Input = (props) => {
 export const TextArea = (props) => {
     return <FormControl {...props} Element={'textarea'}/>
 };
+
+export const creatField = (name, validate, component, placeholder, props = {}, text = "") => {
+    return <div>
+        <Field name={name}
+               validate={validate}
+               component={component}
+               placeholder={placeholder}
+               {...props}
+        />
+        {text}
+    </div>
+}

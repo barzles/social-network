@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from '../../../../style/component/Profile/MyPost.module.css'
 import { Form, Field } from 'react-final-form'
 
@@ -42,4 +42,4 @@ const MyPosts = ({addPost, postsData}) => {
     )
 }
 
-export default MyPosts;
+export default memo(MyPosts);
